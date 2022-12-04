@@ -46,7 +46,7 @@ def get_candidate_by_name(name, source):
     return matched_candidates
 
 
-def get_canidates_by_skill(skill_name, source):
+def get_candidates_by_skill(skill_name, source):
     """
     function searching for persons with required skill
     :param skill_name: required skill
@@ -55,8 +55,3 @@ def get_canidates_by_skill(skill_name, source):
     """
     candidates = load_candidates(source)
     return [person for person in candidates if skill_name.lower() in person["skills"].lower().split(", ")]
-
-
-print(get_candidate_by_name("sh", "candidates.json"))
-# print(get_canidates_by_skill("python", "candidates.json"))
-# print(load_candidates("candidates.json"))
