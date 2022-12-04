@@ -30,6 +30,7 @@ def get_candidate(id, source):
         if candidate["id"] == id:
             return candidate
 
+
 def get_candidate_by_name(name, source):
     """
     function finds one candidate from data according its name
@@ -43,9 +44,16 @@ def get_candidate_by_name(name, source):
             return candidate
 
 
-
-
-
+def get_canidates_by_skill(skill_name, source):
+    """
+    function searching for persons with required skill
+    :param skill_name: required skill
+    :param source: filename or url with json data
+    :return: list of persons with required skill
+    """
+    candidates = load_candidates(source)
+    return [person for person in candidates if skill_name.lower() in person["skills"].lower().split(", ")]
 
 
 print(get_candidate_by_name("Adela Hendricks", "candidates.json"))
+print(get_canidates_by_skill("python", "candidates.json"))
