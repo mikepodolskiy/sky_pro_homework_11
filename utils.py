@@ -18,7 +18,7 @@ def load_candidates(source):
         return response.json()
 
 
-def get_candidate(id, source):
+def get_candidate_by_id(id, source):
     """
     function finds one candidate from data according its id
     :param id: given id
@@ -39,9 +39,11 @@ def get_candidate_by_name(name, source):
     :return: data of person having given id (dict)
     """
     candidates = load_candidates(source)
+    matched_candidates = []
     for candidate in candidates:
-        if candidate["name"] == name:
-            return candidate
+        if name.lower() in candidate["name"].lower():
+            matched_candidates.append(candidate)
+    return matched_candidates
 
 
 def get_canidates_by_skill(skill_name, source):
@@ -55,5 +57,6 @@ def get_canidates_by_skill(skill_name, source):
     return [person for person in candidates if skill_name.lower() in person["skills"].lower().split(", ")]
 
 
-print(get_candidate_by_name("Adela Hendricks", "candidates.json"))
-print(get_canidates_by_skill("python", "candidates.json"))
+print(get_candidate_by_name("sh", "candidates.json"))
+# print(get_canidates_by_skill("python", "candidates.json"))
+# print(load_candidates("candidates.json"))
