@@ -40,7 +40,19 @@ def search_candidate(name):
     """
     candidates = get_candidate_by_name(name, source)
     number_of_candidates = len(candidates)
-    return render_template("search.html", candidates=candidates, number = number_of_candidates)
+    return render_template("search.html", candidates=candidates, number=number_of_candidates)
+
+@app.route("/skill/<skill>")
+def search_candidate_skill(skill):
+    """
+    view for search by skill results
+    :param skill: string data to search for in candidates skills
+    :return:view of search result according to template
+    """
+    candidates = get_canidates_by_skill(skill, source)
+    number_of_candidates = len(candidates)
+    return render_template("skill.html", candidates=candidates, number=number_of_candidates, skill=skill)
+
 
 app.run()
 
